@@ -71,8 +71,8 @@ export default function AccountsPage() {
         </div>
 
         {/* Content */}
-        <div style={{ backgroundColor: 'white', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-          <div style={{ padding: '20px', borderBottom: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ backgroundColor: 'white', borderRadius: '8px', border: '1px solid #e2e8f0', minWidth: '600px' }}>
+          <div style={{ padding: '20px', borderBottom: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
             <h2 style={{ margin: 0, fontSize: '18px', fontWeight: '600', color: '#1e293b' }}>
               {pageTitle} <span style={{ fontWeight: '400', color: '#64748b' }}>
                 {currentTab.id === 'active-pas' ? `${accountData.length} records` : 'no records'}
@@ -99,7 +99,7 @@ export default function AccountsPage() {
 
           {/* Table */}
           <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <table style={{ width: '100%', minWidth: '600px', borderCollapse: 'collapse' }}>
               <thead>
                 <tr>
                   <th style={thStyle}>ACCOUNT</th>

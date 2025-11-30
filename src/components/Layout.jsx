@@ -30,7 +30,7 @@ export default function Layout({ title, children }) {
       {/* Main Content */}
       <div className="main-content" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         <Header title={title} onMenuClick={() => setSidebarOpen(true)} />
-        <main style={{ flex: 1, padding: '24px' }}>
+        <main style={{ flex: 1, padding: '24px', minWidth: '700px' }}>
           {children}
         </main>
       </div>
