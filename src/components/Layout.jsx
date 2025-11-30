@@ -6,7 +6,7 @@ export default function Layout({ title, children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f1f5f9' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f1f5f9', width: '100%', maxWidth: '100vw', overflowX: 'hidden' }}>
 
       {/* Sidebar Overlay for Mobile */}
       {sidebarOpen && (
@@ -31,7 +31,7 @@ export default function Layout({ title, children }) {
       <div className="main-content" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         <div className="scroll-wrapper">
           <Header title={title} onMenuClick={() => setSidebarOpen(true)} />
-          <main style={{ flex: 1, padding: '24px' }}>
+          <main style={{ flex: 1, padding: '24px', width: '100%', maxWidth: '100%', overflowX: 'hidden' }}>
             {children}
           </main>
         </div>
@@ -50,12 +50,17 @@ export default function Layout({ title, children }) {
         .main-content {
           margin-left: 260px;
           min-height: 100vh;
+          width: calc(100% - 260px);
+          max-width: calc(100% - 260px);
+          overflow-x: hidden;
         }
 
         .scroll-wrapper {
           display: flex;
           flex-direction: column;
           min-height: 100vh;
+          width: 100%;
+          max-width: 100%;
         }
 
         @media (max-width: 768px) {
@@ -70,13 +75,16 @@ export default function Layout({ title, children }) {
 
           .main-content {
             margin-left: 0;
-            overflow-x: auto;
-            overscroll-behavior-x: contain;
+            overflow-x: hidden;
+            overscroll-behavior-x: none;
             -webkit-overflow-scrolling: touch;
+            width: 100%;
+            max-width: 100vw;
           }
 
           .scroll-wrapper {
-            min-width: 700px;
+            width: 100%;
+            max-width: 100%;
           }
         }
       `}</style>

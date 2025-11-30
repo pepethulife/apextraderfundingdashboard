@@ -13,7 +13,8 @@ export default function Header({ title, onMenuClick }) {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      minWidth: '700px'
+      width: '100%',
+      maxWidth: '100%'
     }}>
       {/* Left Section */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
@@ -49,6 +50,11 @@ export default function Header({ title, onMenuClick }) {
         @media (max-width: 768px) {
           .mobile-menu-btn {
             display: block !important;
+          }
+          header {
+            padding: 16px 20px !important;
+            flex-wrap: wrap;
+            gap: 12px;
           }
         }
       `}</style>
