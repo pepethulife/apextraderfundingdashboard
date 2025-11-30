@@ -39,7 +39,8 @@ export default function Header({ title, onMenuClick }) {
           color: 'white',
           fontSize: '22px',
           fontWeight: '600',
-          margin: 0
+          margin: 0,
+          fontFamily: "'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
         }}>
           {title}
         </h1>

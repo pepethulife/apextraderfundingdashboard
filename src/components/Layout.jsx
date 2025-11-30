@@ -29,10 +29,12 @@ export default function Layout({ title, children }) {
 
       {/* Main Content */}
       <div className="main-content" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-        <Header title={title} onMenuClick={() => setSidebarOpen(true)} />
-        <main style={{ flex: 1, padding: '24px', minWidth: '700px' }}>
-          {children}
-        </main>
+        <div className="scroll-wrapper">
+          <Header title={title} onMenuClick={() => setSidebarOpen(true)} />
+          <main style={{ flex: 1, padding: '24px' }}>
+            {children}
+          </main>
+        </div>
       </div>
 
       <style>{`
@@ -47,6 +49,12 @@ export default function Layout({ title, children }) {
 
         .main-content {
           margin-left: 260px;
+          min-height: 100vh;
+        }
+
+        .scroll-wrapper {
+          display: flex;
+          flex-direction: column;
           min-height: 100vh;
         }
 
@@ -65,6 +73,10 @@ export default function Layout({ title, children }) {
             overflow-x: auto;
             overscroll-behavior-x: contain;
             -webkit-overflow-scrolling: touch;
+          }
+
+          .scroll-wrapper {
+            min-width: 700px;
           }
         }
       `}</style>
