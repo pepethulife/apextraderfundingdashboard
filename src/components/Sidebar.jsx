@@ -6,10 +6,11 @@ import {
   CreditCard,
   DollarSign,
   ChevronRight,
-  ChevronDown
+  ChevronDown,
+  X
 } from 'lucide-react';
 
-export default function Sidebar() {
+export default function Sidebar({ onClose }) {
   const location = useLocation();
   const navigate = useNavigate();
   const [expandedItems, setExpandedItems] = useState({
@@ -58,14 +59,37 @@ export default function Sidebar() {
         padding: '20px 24px',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'space-between'
       }}>
         <img
           src="/sidebarlogo.png"
           alt="Apex Trader Funding"
           style={{ height: '50px', width: 'auto' }}
         />
+        {onClose && (
+          <button
+            onClick={onClose}
+            className="mobile-close-btn"
+            style={{
+              background: 'none',
+              border: 'none',
+              color: 'white',
+              cursor: 'pointer',
+              padding: '4px',
+              display: 'none'
+            }}
+          >
+            <X size={24} />
+          </button>
+        )}
       </div>
+      <style>{`
+        @media (max-width: 768px) {
+          .mobile-close-btn {
+            display: block !important;
+          }
+        }
+      `}</style>
 
       {/* Navigation */}
       <nav style={{ flex: 1, paddingTop: '8px' }}>
@@ -82,6 +106,7 @@ export default function Sidebar() {
                     toggleExpand(item.id);
                   } else {
                     navigate(item.path);
+                    if (onClose) onClose();
                   }
                 }}
                 style={{
@@ -121,7 +146,7 @@ export default function Sidebar() {
                   {item.subItems.map((subItem) => (
                     <button
                       key={subItem.id}
-                      onClick={() => navigate(subItem.path)}
+                      onClick={() => { navigate(subItem.path); if (onClose) onClose(); }}
                       style={{
                         width: '100%',
                         display: 'block',

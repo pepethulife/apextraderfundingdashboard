@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { User, Lock, Eye, EyeOff } from 'lucide-react';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('dm75app@gmail.com');
-  const [password, setPassword] = useState('••••••••••••');
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
@@ -17,16 +15,18 @@ export default function LoginPage() {
     <div style={{ display: 'flex', minHeight: '100vh' }}>
       {/* Left Side - Login Form */}
       <div style={{
-        width: '50%',
+        width: '100%',
+        maxWidth: '600px',
         backgroundColor: 'white',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        padding: '0 80px'
+        padding: '40px 24px',
+        margin: '0 auto'
       }}>
-        <div style={{ maxWidth: '400px', width: '100%' }}>
+        <div style={{ maxWidth: '400px', width: '100%', margin: '0 auto' }}>
           {/* Logo */}
-          <div style={{ marginBottom: '40px' }}>
+          <div style={{ marginBottom: '40px', textAlign: 'center' }}>
             <img
               src="/loginlogo.png"
               alt="Apex Trader Funding"
@@ -35,7 +35,7 @@ export default function LoginPage() {
           </div>
 
           {/* Title */}
-          <h1 style={{ fontSize: '24px', fontWeight: '600', color: '#1f2937', marginBottom: '32px' }}>
+          <h1 style={{ fontSize: '24px', fontWeight: '600', color: '#1f2937', marginBottom: '32px', textAlign: 'center' }}>
             Login to your Account
           </h1>
 
@@ -54,9 +54,8 @@ export default function LoginPage() {
               }} />
               <input
                 type="text"
-                placeholder="Username/Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                defaultValue="dm75app@gmail.com"
+                readOnly
                 style={{
                   width: '100%',
                   paddingLeft: '48px',
@@ -68,7 +67,8 @@ export default function LoginPage() {
                   fontSize: '14px',
                   color: '#374151',
                   outline: 'none',
-                  boxSizing: 'border-box'
+                  boxSizing: 'border-box',
+                  backgroundColor: '#f9fafb'
                 }}
               />
             </div>
@@ -86,9 +86,8 @@ export default function LoginPage() {
               }} />
               <input
                 type={showPassword ? 'text' : 'password'}
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                defaultValue="mypassword123"
+                readOnly
                 style={{
                   width: '100%',
                   paddingLeft: '48px',
@@ -100,7 +99,8 @@ export default function LoginPage() {
                   fontSize: '14px',
                   color: '#374151',
                   outline: 'none',
-                  boxSizing: 'border-box'
+                  boxSizing: 'border-box',
+                  backgroundColor: '#f9fafb'
                 }}
               />
               <button
@@ -123,7 +123,7 @@ export default function LoginPage() {
             </div>
 
             {/* Login Button & Forgot Password */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px', flexWrap: 'wrap' }}>
               <button
                 type="submit"
                 style={{
@@ -152,13 +152,24 @@ export default function LoginPage() {
               Signup here
             </a>
           </p>
-
         </div>
       </div>
 
-      {/* Right Side - Dark Blue Background */}
-      <div style={{ width: '50%', backgroundColor: '#092149' }}>
+      {/* Right Side - Dark Blue Background (hidden on mobile) */}
+      <div style={{
+        flex: 1,
+        backgroundColor: '#092149',
+        display: 'none'
+      }} className="desktop-only">
       </div>
+
+      <style>{`
+        @media (min-width: 768px) {
+          .desktop-only {
+            display: block !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }
