@@ -4,6 +4,11 @@ import DashboardPage from './pages/DashboardPage';
 import ProfilePage from './pages/ProfilePage';
 import AccountsPage from './pages/AccountsPage';
 import AffiliatePage from './pages/AffiliatePage';
+import UserAgreementPage from './pages/UserAgreementPage';
+import TradingToolsPage from './pages/TradingToolsPage';
+import TradingRulesPage from './pages/TradingRulesPage';
+import ChartsPage from './pages/ChartsPage';
+import HelpPage from './pages/HelpPage';
 
 function App() {
   return (
@@ -15,6 +20,11 @@ function App() {
         <Route path="/accounts/active-evals" element={<AccountsPage />} />
         <Route path="/accounts/active-pas" element={<AccountsPage />} />
         <Route path="/affiliate" element={<AffiliatePage />} />
+        <Route path="/user-agreement" element={<UserAgreementPage />} />
+        <Route path="/trading-tools" element={<TradingToolsPage />} />
+        <Route path="/trading-rules" element={<TradingRulesPage />} />
+        <Route path="/charts" element={<ChartsPage />} />
+        <Route path="/help" element={<HelpPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

@@ -12,7 +12,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', minHeight: '100dvh', overflow: 'hidden' }}>
+    <div style={{ display: 'flex', minHeight: '100vh' }}>
       {/* Left Side - Login Form */}
       <div style={{
         width: '100%',

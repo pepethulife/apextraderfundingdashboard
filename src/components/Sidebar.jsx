@@ -8,7 +8,9 @@ import {
   ChevronRight,
   ChevronDown,
   X,
-  LogOut
+  LogOut,
+  LineChart,
+  HelpCircle
 } from 'lucide-react';
 
 export default function Sidebar({ onClose }) {
@@ -41,7 +43,9 @@ export default function Sidebar({ onClose }) {
         { id: 'active-pas', label: 'Active PAs', path: '/accounts/active-pas' }
       ]
     },
-    { id: 'affiliate', label: 'Affiliate Info', icon: DollarSign, path: '/affiliate' }
+    { id: 'charts', label: 'Charts', icon: LineChart, path: '/charts' },
+    { id: 'affiliate', label: 'Affiliate Info', icon: DollarSign, path: '/affiliate' },
+    { id: 'help', label: 'Help', icon: HelpCircle, path: '/help' }
   ];
 
   return (
@@ -49,10 +53,8 @@ export default function Sidebar({ onClose }) {
       width: '260px',
       backgroundColor: '#092149',
       height: '100vh',
-      height: '100dvh',
       display: 'flex',
-      flexDirection: 'column',
-      overflow: 'hidden'
+      flexDirection: 'column'
     }}>
       {/* Logo */}
       <div style={{

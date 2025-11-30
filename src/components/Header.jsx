@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { ChevronDown, HelpCircle, User, LogOut, CheckCircle } from 'lucide-react';
+import { ChevronDown, User, LogOut, CheckCircle, Menu } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-export default function Header({ title }) {
-  const [helpOpen, setHelpOpen] = useState(false);
+export default function Header({ title, onMenuClick }) {
   const [userOpen, setUserOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -13,17 +12,45 @@ export default function Header({ title }) {
       padding: '16px 32px',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'space-between'
+      justifyContent: 'space-between',
+      minWidth: '700px'
     }}>
-      {/* Page Title */}
-      <h1 style={{
-        color: 'white',
-        fontSize: '22px',
-        fontWeight: '600',
-        margin: 0
-      }}>
-        {title}
-      </h1>
+      {/* Left Section */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+        {/* Mobile Menu Button */}
+        {onMenuClick && (
+          <button
+            onClick={onMenuClick}
+            className="mobile-menu-btn"
+            style={{
+              background: 'none',
+              border: 'none',
+              color: 'white',
+              cursor: 'pointer',
+              padding: '4px',
+              display: 'none'
+            }}
+          >
+            <Menu size={24} />
+          </button>
+        )}
+        {/* Page Title */}
+        <h1 style={{
+          color: 'white',
+          fontSize: '22px',
+          fontWeight: '600',
+          margin: 0
+        }}>
+          {title}
+        </h1>
+      </div>
+      <style>{`
+        @media (max-width: 768px) {
+          .mobile-menu-btn {
+            display: block !important;
+          }
+        }
+      `}</style>
 
       {/* Right Section */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
@@ -33,48 +60,10 @@ export default function Header({ title }) {
           <span style={{ color: 'white', fontSize: '13px' }}>Two-Factor Authentication (Enabled)</span>
         </div>
 
-        {/* Get Help */}
-        <div style={{ position: 'relative' }}>
-          <button
-            onClick={() => { setHelpOpen(!helpOpen); setUserOpen(false); }}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              background: 'none',
-              border: 'none',
-              color: 'white',
-              cursor: 'pointer',
-              fontSize: '14px',
-              fontWeight: '500'
-            }}
-          >
-            Get Help
-            <ChevronDown size={16} />
-          </button>
-          {helpOpen && (
-            <div style={{
-              position: 'absolute',
-              right: 0,
-              top: '100%',
-              marginTop: '8px',
-              backgroundColor: 'white',
-              borderRadius: '8px',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
-              minWidth: '180px',
-              zIndex: 100
-            }}>
-              <a href="#" style={{ display: 'block', padding: '12px 16px', color: '#374151', textDecoration: 'none', fontSize: '14px' }}>Help Center</a>
-              <a href="#" style={{ display: 'block', padding: '12px 16px', color: '#374151', textDecoration: 'none', fontSize: '14px' }}>Contact Support</a>
-              <a href="#" style={{ display: 'block', padding: '12px 16px', color: '#374151', textDecoration: 'none', fontSize: '14px' }}>Trading Rules</a>
-            </div>
-          )}
-        </div>
-
         {/* User Menu */}
         <div style={{ position: 'relative' }}>
           <button
-            onClick={() => { setUserOpen(!userOpen); setHelpOpen(false); }}
+            onClick={() => setUserOpen(!userOpen)}
             style={{
               display: 'flex',
               alignItems: 'center',

@@ -1,33 +1,12 @@
 import { useState } from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
-import { Menu, X } from 'lucide-react';
 
 export default function Layout({ title, children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f1f5f9' }}>
-      {/* Mobile Menu Button */}
-      <button
-        onClick={() => setSidebarOpen(true)}
-        className="mobile-menu-btn"
-        style={{
-          position: 'fixed',
-          top: '16px',
-          left: '16px',
-          zIndex: 50,
-          padding: '8px',
-          backgroundColor: '#092149',
-          color: 'white',
-          border: 'none',
-          borderRadius: '8px',
-          cursor: 'pointer',
-          display: 'none'
-        }}
-      >
-        <Menu size={24} />
-      </button>
 
       {/* Sidebar Overlay for Mobile */}
       {sidebarOpen && (
@@ -50,18 +29,13 @@ export default function Layout({ title, children }) {
 
       {/* Main Content */}
       <div className="main-content" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-        <Header title={title} />
+        <Header title={title} onMenuClick={() => setSidebarOpen(true)} />
         <main style={{ flex: 1, padding: '24px' }}>
           {children}
         </main>
       </div>
 
       <style>{`
-        html, body {
-          overflow-x: hidden;
-          overscroll-behavior: none;
-        }
-
         .sidebar-container {
           position: fixed;
           left: 0;
@@ -69,7 +43,6 @@ export default function Layout({ title, children }) {
           bottom: 0;
           z-index: 999;
           height: 100vh;
-          height: 100dvh;
         }
 
         .main-content {
@@ -78,10 +51,6 @@ export default function Layout({ title, children }) {
         }
 
         @media (max-width: 768px) {
-          .mobile-menu-btn {
-            display: block !important;
-          }
-
           .sidebar-container {
             transform: translateX(-100%);
             transition: transform 0.3s ease;
@@ -93,7 +62,9 @@ export default function Layout({ title, children }) {
 
           .main-content {
             margin-left: 0;
-            padding-top: 60px;
+            overflow-x: auto;
+            overscroll-behavior-x: contain;
+            -webkit-overflow-scrolling: touch;
           }
         }
       `}</style>

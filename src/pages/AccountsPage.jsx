@@ -1,13 +1,10 @@
-import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Layout from '../components/Layout';
-import PAChart from '../components/PAChart';
 import { accountData } from '../data/mockData';
 
 export default function AccountsPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [showChart, setShowChart] = useState(false);
 
   const tabs = [
     { id: 'active-evals', label: 'Active Evals', path: '/accounts/active-evals' },
@@ -83,7 +80,7 @@ export default function AccountsPage() {
             </h2>
             {currentTab.id === 'active-pas' && (
               <button
-                onClick={() => setShowChart(true)}
+                onClick={() => navigate('/charts')}
                 style={{
                   backgroundColor: '#092149',
                   color: 'white',
@@ -135,14 +132,6 @@ export default function AccountsPage() {
           </div>
         </div>
       </Layout>
-
-      {/* Chart Modal */}
-      {showChart && (
-        <PAChart
-          accountData={accountData}
-          onClose={() => setShowChart(false)}
-        />
-      )}
     </>
   );
 }

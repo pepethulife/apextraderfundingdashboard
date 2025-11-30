@@ -73,25 +73,13 @@ export default function DashboardPage() {
 
         {/* Right Column */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          {/* Purchases Card */}
-          <div>
-            <div style={cardHeaderStyle}>Purchases</div>
-            <div style={cardBodyStyle}>
-              <a href="#" style={linkStyle}>Active Subscriptions( 0 Active )</a>
-              <a href="#" style={linkStyle}>Purchase Receipts</a>
-              <a href="#" style={linkStyle}>Payment History</a>
-              <a href="#" style={linkStyle}>Legacy Payment History</a>
-            </div>
-          </div>
-
           {/* Useful Links Card */}
           <div>
             <div style={cardHeaderStyle}>Useful Links</div>
             <div style={cardBodyStyle}>
-              <a href="#" style={linkStyle}>User Agreement</a>
-              <a href="#" style={linkStyle}>Trading Tools and Resources</a>
-              <a href="#" style={linkStyle}>Trading Rules</a>
-              <a href="#" style={linkStyle}>Required Training</a>
+              <div style={linkStyle} onClick={() => navigate('/user-agreement')}>User Agreement</div>
+              <div style={linkStyle} onClick={() => navigate('/trading-tools')}>Trading Tools and Resources</div>
+              <div style={linkStyle} onClick={() => navigate('/trading-rules')}>Trading Rules</div>
             </div>
           </div>
         </div>
