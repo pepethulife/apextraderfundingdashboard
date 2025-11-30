@@ -57,15 +57,24 @@ export default function Layout({ title, children }) {
       </div>
 
       <style>{`
+        html, body {
+          overflow-x: hidden;
+          overscroll-behavior: none;
+        }
+
         .sidebar-container {
           position: fixed;
           left: 0;
           top: 0;
+          bottom: 0;
           z-index: 999;
+          height: 100vh;
+          height: 100dvh;
         }
 
         .main-content {
           margin-left: 260px;
+          min-height: 100vh;
         }
 
         @media (max-width: 768px) {
@@ -84,6 +93,7 @@ export default function Layout({ title, children }) {
 
           .main-content {
             margin-left: 0;
+            padding-top: 60px;
           }
         }
       `}</style>

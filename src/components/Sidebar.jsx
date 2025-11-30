@@ -7,7 +7,8 @@ import {
   DollarSign,
   ChevronRight,
   ChevronDown,
-  X
+  X,
+  LogOut
 } from 'lucide-react';
 
 export default function Sidebar({ onClose }) {
@@ -47,9 +48,11 @@ export default function Sidebar({ onClose }) {
     <aside style={{
       width: '260px',
       backgroundColor: '#092149',
-      minHeight: '100vh',
+      height: '100vh',
+      height: '100dvh',
       display: 'flex',
-      flexDirection: 'column'
+      flexDirection: 'column',
+      overflow: 'hidden'
     }}>
       {/* Logo */}
       <div style={{
@@ -97,7 +100,7 @@ export default function Sidebar({ onClose }) {
       `}</style>
 
       {/* Navigation */}
-      <nav style={{ flex: 1, paddingTop: '8px' }}>
+      <nav style={{ flex: 1, paddingTop: '8px', overflowY: 'auto' }}>
         {navItems.map((item) => {
           const Icon = item.icon;
           const isExpanded = expandedItems[item.id];
@@ -186,6 +189,34 @@ export default function Sidebar({ onClose }) {
           );
         })}
       </nav>
+
+      {/* Logout Button */}
+      <div style={{ padding: '16px 24px', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+        <button
+          onClick={() => {
+            navigate('/');
+            if (onClose) onClose();
+          }}
+          style={{
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '14px',
+            padding: '14px 0',
+            border: 'none',
+            background: 'transparent',
+            color: 'rgba(255,255,255,0.7)',
+            cursor: 'pointer',
+            textAlign: 'left',
+            transition: 'color 0.2s'
+          }}
+          onMouseEnter={(e) => e.target.style.color = 'white'}
+          onMouseLeave={(e) => e.target.style.color = 'rgba(255,255,255,0.7)'}
+        >
+          <LogOut size={20} style={{ opacity: 0.9 }} />
+          <span style={{ fontSize: '15px', fontWeight: '500' }}>Logout</span>
+        </button>
+      </div>
     </aside>
   );
 }
