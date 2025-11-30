@@ -48,9 +48,6 @@ export default function Sidebar({ onClose }) {
       width: '260px',
       backgroundColor: '#092149',
       minHeight: '100vh',
-      position: 'fixed',
-      left: 0,
-      top: 0,
       display: 'flex',
       flexDirection: 'column'
     }}>
@@ -68,15 +65,18 @@ export default function Sidebar({ onClose }) {
         />
         {onClose && (
           <button
-            onClick={onClose}
+            onClick={(e) => {
+              e.stopPropagation();
+              onClose();
+            }}
             className="mobile-close-btn"
             style={{
               background: 'none',
               border: 'none',
               color: 'white',
               cursor: 'pointer',
-              padding: '4px',
-              display: 'none'
+              padding: '8px',
+              zIndex: 1000
             }}
           >
             <X size={24} />
@@ -84,9 +84,14 @@ export default function Sidebar({ onClose }) {
         )}
       </div>
       <style>{`
+        .mobile-close-btn {
+          display: none;
+        }
         @media (max-width: 768px) {
           .mobile-close-btn {
-            display: block !important;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
           }
         }
       `}</style>
